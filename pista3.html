@@ -1,5 +1,104 @@
 <!doctype html>
-<html>
-  <head><meta charset="utf-8"><title>Pista 3</title></head>
-  <body><h1>Pista 3</h1></body>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pista 3</title>
+  <style>
+    :root{--bg:#05060a;--card:#0b1224cc;--bd:#1e2a50;--tx:#e8ecff;--mt:#a9b2d6;--g:#00ff88;--b:#4aa3ff;--p:#ff4dd8;--r:18px}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px;color:var(--tx);
+      background:radial-gradient(900px 600px at 20% 10%, rgba(74,163,255,.12), transparent 60%),
+               radial-gradient(900px 700px at 80% 20%, rgba(255,77,216,.10), transparent 55%),
+               radial-gradient(900px 700px at 40% 90%, rgba(0,255,136,.10), transparent 55%),
+               linear-gradient(180deg, var(--bg), #0b1020);}
+    .card{width:min(560px,100%);background:linear-gradient(180deg, rgba(11,18,36,.85), rgba(11,18,36,.65));
+      border:1px solid rgba(30,42,80,.7);border-radius:var(--r);padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.55);backdrop-filter:blur(10px)}
+    .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-end}
+    h1{margin:0;font-size:22px}
+    .meta{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      color:var(--mt);font-size:12px;text-align:right;white-space:nowrap}
+    .box{margin-top:14px;padding:14px;border-radius:14px;background:rgba(5,6,10,.55);border:1px solid rgba(30,42,80,.6)}
+    .hint{color:var(--mt);font-size:13px;line-height:1.5}
+    code{color:var(--b);font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
+    label{display:block;margin-top:14px;color:var(--mt);font-size:13px}
+    input{width:100%;margin-top:8px;padding:12px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);color:var(--tx);outline:none;font-size:14px}
+    input:focus{border-color:rgba(74,163,255,.45)}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    button,a.btn{appearance:none;border:none;border-radius:14px;padding:12px 14px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    button{background:linear-gradient(180deg, rgba(0,255,136,.95), rgba(0,201,122,.95));color:#02130a}
+    button:hover{filter:brightness(1.06)}
+    .ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--tx)}
+    .out{display:none;margin-top:12px;padding:12px;border-radius:14px;border:1px solid rgba(0,255,136,.22);background:rgba(0,255,136,.08);
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;color:#bfffe1}
+    .out b{color:var(--g)}
+    .err{display:none;margin-top:12px;padding:12px;border-radius:14px;border:1px solid rgba(255,80,80,.25);background:rgba(255,80,80,.08);color:#ffd1d1}
+    .footer{margin-top:14px;color:rgba(169,178,214,.85);font-size:12px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="top">
+      <h1>Pista 3/3 — Commit</h1>
+      <div class="meta">Tati Escape · Dev: Lucas</div>
+    </div>
+
+    <div class="box">
+      <div class="hint">
+        “Último reto: junta los códigos y pásalos a ‘modo commit’<br>
+        Formato: <code>codigo1-codigo2</code>”
+      </div>
+
+      <label for="commit">Escribe el commit code</label>
+      <input id="commit" autocomplete="off" placeholder="Ej: SPARK-GT" />
+
+      <div class="row">
+        <button id="check">Validar ✅</button>
+        <button class="ghost" id="clear" type="button">Limpiar</button>
+      </div>
+
+      <div class="out" id="out">
+        <b>Acceso concedido ✅</b><br>
+        Abre el PR final: <b>/final.html</b><br><br>
+        <a class="btn ghost" href="./final.html">Abrir PR final →</a>
+      </div>
+
+      <div class="err" id="err">Casi… revisa el formato: SPARK-GT 😉</div>
+    </div>
+
+    <div class="footer">© Lucas | Built with cariño</div>
+  </main>
+
+  <script>
+    const input = document.getElementById('commit');
+    const out = document.getElementById('out');
+    const err = document.getElementById('err');
+
+    function normalize(v){
+      return (v||'').trim().replace(/\s+/g,'').toUpperCase();
+    }
+
+    function validate(){
+      const v = normalize(input.value);
+      if (v === 'SPARK-GT'){
+        err.style.display = 'none';
+        out.style.display = 'block';
+      } else {
+        out.style.display = 'none';
+        err.style.display = 'block';
+      }
+    }
+
+    document.getElementById('check').addEventListener('click', validate);
+    document.getElementById('clear').addEventListener('click', () => {
+      input.value = '';
+      out.style.display = 'none';
+      err.style.display = 'none';
+      input.focus();
+    });
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') validate(); });
+  </script>
+</body>
 </html>
+
