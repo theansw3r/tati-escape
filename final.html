@@ -6,102 +6,107 @@
   <title>PR Final</title>
   <style>
     :root{
-      --bg1:#05060a; --bg2:#0b1020;
-      --card:#0b1224cc; --bd:#1e2a50;
-      --tx:#e8ecff; --mt:#a9b2d6;
-      --g:#00ff88; --g2:#00c97a;
-      --b:#4aa3ff; --p:#ff4dd8; --y:#ffd36a;
-      --r:18px;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
+      --bg1:#1b0b3a; --bg2:#3a0a5e;
+      --card:rgba(255,255,255,.10);
+      --border:rgba(255,255,255,.18);
+      --text:#ffffff; --muted:rgba(255,255,255,.78);
+      --accent:#b86bff; --accent2:#ff5cc8;
+      --ok:#52ffa8; --warn:#ffd36a;
+      --radius:20px; --shadow:0 18px 60px rgba(0,0,0,.45);
     }
     *{box-sizing:border-box}
     body{
-      margin:0; min-height:100vh; padding:22px; color:var(--tx);
+      margin:0; min-height:100vh; padding:22px; color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       background:
-        radial-gradient(1000px 600px at 20% 10%, rgba(74,163,255,.12), transparent 60%),
-        radial-gradient(900px 700px at 80% 20%, rgba(255,77,216,.10), transparent 55%),
-        radial-gradient(900px 700px at 40% 90%, rgba(0,255,136,.10), transparent 55%),
+        radial-gradient(1000px 600px at 20% 10%, rgba(184,107,255,.25), transparent 60%),
+        radial-gradient(900px 700px at 80% 20%, rgba(255,92,200,.20), transparent 55%),
+        radial-gradient(900px 700px at 40% 90%, rgba(82,255,168,.14), transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       display:flex; align-items:center; justify-content:center;
       overflow:hidden;
     }
-    .wrap{width:min(920px,100%); display:grid; gap:16px;}
+    .wrap{width:min(980px,100%); display:grid; gap:14px;}
     .topbar{
       display:flex; justify-content:space-between; align-items:flex-end; gap:12px;
       padding:18px 20px;
-      background:linear-gradient(180deg, rgba(11,18,36,.85), rgba(11,18,36,.65));
-      border:1px solid rgba(30,42,80,.7);
-      border-radius:var(--r);
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
     }
-    .title h1{margin:0; font-size:22px}
-    .title .sub{margin-top:6px; color:var(--mt); font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; font-size:12px}
-    .meta{color:var(--mt); text-align:right; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace; font-size:12px}
+    h1{margin:0; font-size:22px}
+    .sub{margin-top:6px; color:var(--muted); font-size:13px}
+    .meta{color:var(--muted); text-align:right; font-size:12px}
     .panel{
-      background:linear-gradient(180deg, rgba(11,18,36,.85), rgba(11,18,36,.65));
-      border:1px solid rgba(30,42,80,.7);
-      border-radius:var(--r);
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       padding:18px;
     }
-    .lock{display:grid; gap:10px;}
-    label{color:var(--mt); font-size:13px}
-    input{
-      width:100%; padding:12px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06); color:var(--tx);
-      outline:none; font-size:14px;
+    .lock label{display:block; margin-top:12px; color:var(--muted); font-size:13px}
+    .lock input{
+      width:100%; margin-top:8px; padding:14px;
+      border-radius:16px; border:1px solid var(--border);
+      background:rgba(0,0,0,.14); color:var(--text); outline:none; font-size:15px;
     }
-    input:focus{border-color:rgba(74,163,255,.45)}
-    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .lock input:focus{border-color: rgba(184,107,255,.7); box-shadow: 0 0 0 4px rgba(184,107,255,.18)}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
     button{
-      appearance:none; border:none; border-radius:14px; padding:12px 14px;
-      font-weight:800; cursor:pointer;
-      transition: transform .12s ease, filter .12s ease;
+      border:none; border-radius:16px; padding:12px 14px; font-weight:900; cursor:pointer;
+      transition: filter .12s ease, transform .12s ease;
     }
     button:active{transform:scale(.98)}
-    .okbtn{background:linear-gradient(180deg, rgba(0,255,136,.95), rgba(0,201,122,.95)); color:#02130a}
-    .okbtn:hover{filter:brightness(1.06)}
-    .ghost{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:var(--tx)}
-    .err{display:none; margin-top:10px; padding:12px; border-radius:14px; border:1px solid rgba(255,80,80,.25); background:rgba(255,80,80,.08); color:#ffd1d1}
+    .primary{background:linear-gradient(180deg, rgba(184,107,255,.98), rgba(255,92,200,.85)); color:#190424}
+    .ghost{
+      background:rgba(255,255,255,.10);
+      border:1px solid var(--border);
+      color:var(--text);
+      text-decoration:none;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 14px; border-radius:16px;
+    }
+    .err{
+      display:none; margin-top:12px; padding:14px;
+      border-radius:16px; border:1px solid rgba(255,90,120,.28);
+      background:rgba(255,90,120,.10); color:#ffd7df; font-weight:650
+    }
     .pr{display:none}
-    .grid{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
-    @media (max-width: 860px){.grid{grid-template-columns:1fr}}
+    .grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
     .card{
-      padding:16px; border-radius:16px;
-      background:rgba(5,6,10,.55);
-      border:1px solid rgba(30,42,80,.6);
+      padding:16px; border-radius:18px;
+      background:rgba(0,0,0,.14);
+      border:1px solid var(--border);
     }
-    .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;}
-    .k{color:var(--mt); font-size:12px}
-    .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:12px;
-      border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); color:var(--tx);}
-    .pill.ok{border-color:rgba(0,255,136,.22); background:rgba(0,255,136,.08); color:#bfffe1}
-    .pill.warn{border-color:rgba(255,211,106,.25); background:rgba(255,211,106,.10); color:#ffe7b8}
-    ul{margin:10px 0 0 18px; color:var(--tx)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--border); background:rgba(255,255,255,.08);
+      font-size:12px; color:var(--text);
+    }
+    .pill.ok{border-color:rgba(82,255,168,.28); background:rgba(82,255,168,.10); color:#dcffe9}
+    .big{font-size: clamp(22px, 3vw, 34px); margin:0; line-height:1.15}
+    .tagline{color:var(--muted); margin-top:10px}
+    ul{margin:10px 0 0 18px}
     li{margin:8px 0}
-    .big{
-      font-size: clamp(22px, 3vw, 34px);
-      margin:0;
-      line-height:1.15;
-    }
-    .tagline{color:var(--mt); margin-top:10px}
     .merge{
       width:100%;
-      background: linear-gradient(180deg, rgba(255,77,216,.95), rgba(255,77,216,.75));
-      color:#210013;
-      box-shadow: 0 10px 30px rgba(255,77,216,.18);
+      background:linear-gradient(180deg, rgba(255,92,200,.95), rgba(184,107,255,.85));
+      color:#190424;
+      box-shadow: 0 10px 30px rgba(184,107,255,.20);
     }
     .merge:hover{filter:brightness(1.06)}
     .result{
-      display:none; margin-top:12px; padding:12px; border-radius:14px;
-      border:1px solid rgba(0,255,136,.22); background:rgba(0,255,136,.08);
-      color:#bfffe1;
+      display:none; margin-top:12px; padding:14px; border-radius:16px;
+      border:1px solid rgba(82,255,168,.28); background:rgba(82,255,168,.10);
+      color:#dcffe9; font-weight:650;
     }
-    .result b{color:var(--g)}
-    .footer{margin-top:12px;color:rgba(169,178,214,.85);font-size:12px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace}
+    .result b{color:var(--ok)}
+    .footer{margin-top:12px; color:rgba(255,255,255,.65); font-size:12px}
     #confetti{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:1000}
   </style>
 </head>
@@ -109,80 +114,77 @@
 <canvas id="confetti"></canvas>
 
 <div class="wrap">
-  <div class="topbar">
-    <div class="title">
-      <h1>Pull Request — Girlfriend Mode</h1>
-      <div class="sub mono">repo: tati-escape · branch: lucas/heart-branch → main</div>
+  <header class="topbar">
+    <div>
+      <h1>Pull Request — Girlfriend Mode 💜</h1>
+      <div class="sub">repo: tati-escape · lucas/heart-branch → main</div>
     </div>
-    <div class="meta mono">
-      Developer: Lucas<br>
-      Reviewer: Tati
-    </div>
-  </div>
+    <div class="meta">Developer: Lucas<br>Reviewer: Tati</div>
+  </header>
 
+  <!-- LOCK -->
   <section class="panel lock" id="lock">
     <div class="card">
-      <div class="k mono">Security check</div>
-      <h2 class="big">Enter key to open PR</h2>
-      <div class="tagline mono">Hint: un planeta 👀</div>
+      <div class="pill">🔒 Acceso al PR</div>
+      <h2 class="big" style="margin-top:10px;">Ingresa la clave final</h2>
+      <div class="tagline">Escribe la respuesta ya resuelta para abrir el PR.</div>
 
       <label for="key">Clave</label>
-      <input id="key" placeholder="Escribe aquí…" autocomplete="off" />
+      <input id="key" autocomplete="off" placeholder="Escribe aquí…" />
 
       <div class="row">
-        <button class="okbtn" id="open">Open PR ✅</button>
-        <a class="ghost" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:14px"
-           href="./pista3.html">← Volver</a>
+        <button class="primary" id="open">Open PR</button>
+        <a class="ghost" href="./pista3.html">← Volver</a>
       </div>
 
-      <div class="err" id="err">Esa no es. Pista: todo en mayúscula o minúscula da igual 😉</div>
+      <div class="err" id="err">Esa no es 😅 Intenta otra vez.</div>
+      <div class="footer">© Lucas</div>
     </div>
-    <div class="footer">© Lucas | Built with cariño</div>
   </section>
 
+  <!-- PR -->
   <section class="panel pr" id="pr">
     <div class="grid">
       <div class="card">
-        <div class="k mono">Title</div>
-        <div class="mono" style="font-weight:800;font-size:16px;margin-top:6px;">feat: enable girlfriend_mode()</div>
+        <div class="pill">✨ PR Details</div>
+        <div style="margin-top:12px;font-weight:900;font-size:16px;">feat: enable girlfriend_mode()</div>
 
-        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
-          <span class="pill mono">from: lucas/heart-branch</span>
-          <span class="pill mono">into: main</span>
-          <span class="pill ok mono">✅ checks passed</span>
+        <div class="row" style="margin-top:12px;">
+          <span class="pill">from: lucas/heart-branch</span>
+          <span class="pill">into: main</span>
+          <span class="pill ok">✅ checks passed</span>
         </div>
 
-        <div class="k mono" style="margin-top:14px;">Mini changelog (modo wow)</div>
-        <ul class="mono">
+        <div class="tagline" style="margin-top:14px;"><b>Mini changelog (modo wow)</b></div>
+        <ul>
           <li><b>Added:</b> tus risas que me arreglan el día (sin hotfix).</li>
           <li><b>Improved:</b> nuestras salidas + la paz que me das cuando todo está intenso.</li>
           <li><b>Fixed:</b> días pesados → con abrazo, cafecito y “estoy aquí”.</li>
         </ul>
-
-        <div class="k mono" style="margin-top:14px;">Checks</div>
-        <div style="display:grid; gap:8px; margin-top:8px;">
-          <span class="pill ok mono">✅ build: feelings-pass</span>
-          <span class="pill ok mono">✅ test: laughs-ok</span>
-          <span class="pill ok mono">✅ lint: respect-clean</span>
-        </div>
       </div>
 
       <div class="card">
-        <div class="k mono">Review requested</div>
-        <h2 class="big" style="margin-top:8px;">Tati… ¿quieres ser mi novia?</h2>
+        <div class="pill">💌 Review</div>
+        <h2 class="big" style="margin-top:10px;">Tati… ¿quieres ser mi novia?</h2>
         <div class="tagline">“Acepto tus bugs y celebro tus versiones.”</div>
 
         <div class="row" style="margin-top:14px;">
-          <button class="merge" id="merge">Merge ❤️</button>
+          <button class="merge" id="merge">Merge 💜</button>
         </div>
 
-        <div class="result mono" id="result">
+        <div class="result" id="result">
           🎉 <b>Merged successfully</b> into <b>main</b> ✅<br>
           Status: girlfriend_mode = <b>true</b><br>
-          Plan: <b>ya resolví</b>
+          Plan: <b>ya resolví</b><br><br>
+          <b>Next steps:</b>
+          <ul style="margin:8px 0 0 18px;">
+            <li>🏀 Me debes un partido de básquet</li>
+            <li>🧿 Me debes una ida al turco</li>
+            <li>📸 Foto pa’ guardar este release</li>
+          </ul>
         </div>
 
-        <div class="footer">© Lucas | Built with cariño</div>
+        <div class="footer">© Lucas</div>
       </div>
     </div>
   </section>
@@ -196,34 +198,28 @@
   const err = document.getElementById('err');
 
   function openPR(){
-    const v = (keyInput.value || '').trim().toLowerCase();
-    if (v === 'jupiter'){
-      err.style.display = 'none';
-      lock.style.display = 'none';
-      pr.style.display = 'block';
+    const v = (keyInput.value||'').trim().toLowerCase();
+    if(v === 'jupiter'){
+      err.style.display='none';
+      lock.style.display='none';
+      pr.style.display='block';
       window.scrollTo({top:0, behavior:'smooth'});
     } else {
-      err.style.display = 'block';
+      err.style.display='block';
     }
   }
-
   document.getElementById('open').addEventListener('click', openPR);
   keyInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter') openPR(); });
 
   // Merge + confetti
   const mergeBtn = document.getElementById('merge');
   const result = document.getElementById('result');
+  mergeBtn.addEventListener('click', ()=>{ result.style.display='block'; burstConfetti(); });
 
-  mergeBtn.addEventListener('click', ()=>{
-    result.style.display = 'block';
-    burstConfetti();
-  });
-
-  // Confetti (simple)
+  // Confetti simple
   const canvas = document.getElementById('confetti');
   const ctx = canvas.getContext('2d');
-  let pieces = [];
-  let running = false;
+  let pieces = []; let running = false;
 
   function resize(){
     canvas.width = window.innerWidth * devicePixelRatio;
@@ -232,52 +228,27 @@
     canvas.style.height = window.innerHeight + 'px';
     ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
   }
-  window.addEventListener('resize', resize);
-  resize();
+  window.addEventListener('resize', resize); resize();
 
   function piece(){
-    const colors = ['#00ff88','#4aa3ff','#ff4dd8','#ffd36a','#ffffff'];
-    return {
-      x: Math.random()*window.innerWidth,
-      y: -20 - Math.random()*120,
-      vx: (Math.random()-.5)*5,
-      vy: 2 + Math.random()*5,
-      s: 6 + Math.random()*8,
-      r: Math.random()*Math.PI,
-      vr: (Math.random()-.5)*0.2,
-      c: colors[Math.floor(Math.random()*colors.length)],
-      life: 160 + Math.random()*80
-    };
+    const colors = ['#b86bff','#ff5cc8','#ffffff','#52ffa8','#ffd36a'];
+    return {x:Math.random()*window.innerWidth,y:-20-Math.random()*120,vx:(Math.random()-.5)*5,vy:2+Math.random()*5,
+      s:6+Math.random()*8,r:Math.random()*Math.PI,vr:(Math.random()-.5)*0.2,c:colors[Math.floor(Math.random()*colors.length)],life:170+Math.random()*90};
   }
-
-  function burstConfetti(){
-    pieces = Array.from({length: 160}, piece);
-    running = true;
-    requestAnimationFrame(tick);
-  }
-
+  function burstConfetti(){ pieces = Array.from({length:170}, piece); running = true; requestAnimationFrame(tick); }
   function tick(){
     if(!running) return;
     ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
-
     pieces.forEach(p=>{
-      p.x += p.vx; p.y += p.vy; p.r += p.vr; p.vy += 0.03; p.life -= 1;
-      ctx.save();
-      ctx.translate(p.x,p.y);
-      ctx.rotate(p.r);
-      ctx.fillStyle = p.c;
-      ctx.fillRect(-p.s/2, -p.s/2, p.s, p.s*0.6);
-      ctx.restore();
+      p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; p.vy+=0.03; p.life-=1;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle=p.c;
+      ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.6); ctx.restore();
     });
-
     pieces = pieces.filter(p=>p.life>0 && p.y < window.innerHeight+40);
-    if(pieces.length===0){
-      running=false;
-      ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
-      return;
-    }
+    if(pieces.length===0){ running=false; ctx.clearRect(0,0,window.innerWidth, window.innerHeight); return; }
     requestAnimationFrame(tick);
   }
 </script>
 </body>
 </html>
+
